@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function(){
 //admin show the order
         Route::get('order/{id}',[OrderController::class,'show'])->name('admin.order.show');
          //confirm,pending,rejeceted
-Route::post('order/{id}/status',[OrderController::class,'update'])->name('admin.order.update');
+        Route::post('order/{id}/status',[OrderController::class,'update'])->name('admin.order.update');
 
 
 

@@ -10,6 +10,8 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 
 class CartController extends Controller
 {
@@ -108,6 +110,7 @@ public function order(Request $request){
     } 
 
     session()->forget('cart');
+    Mail::to(auth()->user()->email)->send(new OrderMail($order));
 
     DB::commit();
     return redirect()->route('profile');
